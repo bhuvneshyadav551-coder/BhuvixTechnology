@@ -20,8 +20,1616 @@
   <!-- Favicon SVG -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230055ff'/><path d='M28 72V28h24c13 0 20 7 20 15 0 6-3 10-8 12 7 2 10 7 10 14 0 9-8 17-22 17H28zm14-28h10c5 0 8-3 8-7s-3-7-8-7H42v14zm0 18h12c6 0 9-3 9-8s-3-8-9-8H42v16z' fill='%23ffffff'/></svg>">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Typography: Cabinet Grotesk (Fontshare) & Plus Jakarta Sans / JetBrains Mono (Google Fonts) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+/* ==========================================================================
+   BHUVIXTECHNOLOGIES - CORE DESIGN SYSTEM & STYLESHEET
+   Aesthetics: Futuristic Neo-Tech & High-End Enterprise Consulting
+   Inspired by: Frontline Intelligence System & Pioneer IT Consulting
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Google Fonts & CSS Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cabinet+Grotesk:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Color Palette */
+  --bx-bg-dark: #070a12;
+  --bx-bg-card: rgba(13, 19, 35, 0.72);
+  --bx-bg-card-hover: rgba(19, 28, 51, 0.85);
+  --bx-bg-card-solid: #0c1222;
+  --bx-bg-surface: #0f172a;
+  --bx-bg-alt: #111a30;
+
+  /* Accent Colors */
+  --bx-primary: #0055ff;          /* Electric Royal / Klein Blue */
+  --bx-primary-soft: #2e72ff;
+  --bx-primary-glow: rgba(0, 85, 255, 0.35);
+  --bx-primary-rgb: 0, 85, 255;
+  --bx-accent-cyan: #00f0ff;      /* Cyber cyan for highlights */
+  --bx-accent-cyan-glow: rgba(0, 240, 255, 0.25);
+  --bx-accent-emerald: #10b981;   /* Live indicator green */
+  --bx-accent-amber: #f59e0b;
+
+  /* Text & Inks */
+  --bx-text-main: #f8fafc;
+  --bx-text-muted: #94a3b8;
+  --bx-text-dim: #64748b;
+  --bx-text-inverse: #070a12;
+
+  /* Hairlines & Borders */
+  --bx-border: rgba(255, 255, 255, 0.08);
+  --bx-border-hover: rgba(0, 85, 255, 0.45);
+  --bx-border-highlight: rgba(0, 240, 255, 0.3);
+
+  /* Typography */
+  --bx-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --bx-font-display: 'Cabinet Grotesk', 'Plus Jakarta Sans', sans-serif;
+  --bx-font-mono: 'JetBrains Mono', monospace;
+
+  /* Shadows & Glass */
+  --bx-glass-bg: rgba(9, 14, 26, 0.75);
+  --bx-glass-blur: blur(18px);
+  --bx-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --bx-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --bx-shadow-glow: 0 0 35px var(--bx-primary-glow);
+  --bx-shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.5);
+
+  /* Layout */
+  --bx-max-w: 1280px;
+  --bx-radius-sm: 6px;
+  --bx-radius-md: 12px;
+  --bx-radius-lg: 18px;
+  --bx-radius-xl: 26px;
+  --bx-radius-full: 9999px;
+
+  /* Transition Speeds */
+  --bx-trans-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --bx-trans-base: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --bx-trans-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Global Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--bx-font-sans);
+  background-color: var(--bx-bg-dark);
+  color: var(--bx-text-main);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--bx-bg-dark);
+}
+
+/* Subtle background glowing ambient mesh */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(0, 85, 255, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(9, 14, 26, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Custom Selection */
+::selection {
+  background: var(--bx-primary);
+  color: #ffffff;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--bx-font-display);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--bx-text-main);
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: var(--bx-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--bx-trans-fast);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   3. Utility Classes & Layout
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--bx-max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 4rem auto;
+}
+
+.section-header.text-left {
+  text-align: left;
+  margin-left: 0;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.section-title span.accent {
+  background: linear-gradient(135deg, #ffffff 30%, var(--bx-primary-soft) 80%, var(--bx-accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--bx-text-muted);
+  line-height: 1.65;
+}
+
+/* Glowing Micro-Chip / Badge (Inspired by FIS) */
+.bx-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--bx-radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--bx-border);
+  font-family: var(--bx-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bx-text-main);
+  backdrop-filter: blur(10px);
+}
+
+.bx-chip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--bx-primary);
+  box-shadow: 0 0 10px var(--bx-primary);
+  display: inline-block;
+}
+
+.bx-chip.emerald .dot {
+  background-color: var(--bx-accent-emerald);
+  box-shadow: 0 0 10px var(--bx-accent-emerald);
+  animation: bxPulse 2s infinite ease-in-out;
+}
+
+.bx-chip.cyan .dot {
+  background-color: var(--bx-accent-cyan);
+  box-shadow: 0 0 10px var(--bx-accent-cyan);
+}
+
+@keyframes bxPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--bx-radius-full);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all var(--bx-trans-base);
+  border: 1px solid transparent;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--bx-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 20px var(--bx-primary-glow);
+}
+
+.btn-primary:hover {
+  background: var(--bx-primary-soft);
+  box-shadow: 0 6px 28px rgba(0, 85, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--bx-border);
+  color: var(--bx-text-main);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  border-color: var(--bx-primary);
+  background: rgba(0, 85, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--bx-text-muted);
+}
+
+.btn-ghost:hover {
+  color: #ffffff;
+}
+
+.btn-sm {
+  padding: 0.55rem 1.15rem;
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all var(--bx-trans-base);
+}
+
+.header.scrolled {
+  padding: 0.75rem 0;
+  background: var(--bx-glass-bg);
+  backdrop-filter: var(--bx-glass-blur);
+  border-bottom: 1px solid var(--bx-border);
+  box-shadow: var(--bx-shadow-sm);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--bx-font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--bx-radius-md);
+  background: linear-gradient(135deg, var(--bx-primary) 0%, #002488 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 16px var(--bx-primary-glow);
+}
+
+.logo-text span {
+  color: var(--bx-primary-soft);
+}
+
+/* Nav Links */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--bx-text-muted);
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #ffffff;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--bx-primary);
+  transition: width var(--bx-trans-fast);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Mobile Nav Toggle */
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-sm);
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+/* Mobile Menu Drawer */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 360px;
+  height: 100vh;
+  background: var(--bx-bg-card-solid);
+  border-left: 1px solid var(--bx-border);
+  padding: 2.5rem 2rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: right var(--bx-trans-base);
+  box-shadow: -10px 0 30px rgba(0,0,0,0.7);
+}
+
+.mobile-nav-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.drawer-close {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.drawer-links a {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--bx-text-muted);
+}
+
+.drawer-links a:hover {
+  color: #ffffff;
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--bx-trans-base);
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   5. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-chip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero-headline {
+  font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+.hero-headline .gradient-text {
+  background: linear-gradient(135deg, #ffffff 20%, #90b8ff 60%, var(--bx-accent-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: var(--bx-text-muted);
+  max-width: 600px;
+  margin-bottom: 2.25rem;
+  line-height: 1.7;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+/* Live Floating Metric Cards in Hero */
+.hero-visual {
+  position: relative;
+}
+
+.hero-card-stack {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.tech-canvas-card {
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-xl);
+  padding: 2rem;
+  box-shadow: var(--bx-shadow-card);
+  backdrop-filter: var(--bx-glass-blur);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-canvas-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(0, 85, 255, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.canvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--bx-border);
+}
+
+.canvas-title {
+  font-size: 0.95rem;
+  font-family: var(--bx-font-mono);
+  color: var(--bx-text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.metric-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.metric-meta .name {
+  color: var(--bx-text-main);
+  font-weight: 600;
+}
+
+.metric-meta .val {
+  font-family: var(--bx-font-mono);
+  color: var(--bx-accent-cyan);
+}
+
+.progress-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: var(--bx-radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--bx-radius-full);
+  background: linear-gradient(90deg, var(--bx-primary), var(--bx-accent-cyan));
+  transition: width 1.2s ease-out;
+}
+
+/* Floating Badges */
+.floating-badge {
+  position: absolute;
+  padding: 0.85rem 1.25rem;
+  background: rgba(13, 20, 38, 0.92);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 3;
+}
+
+.floating-badge.badge-top-left {
+  top: -1.5rem;
+  left: -2rem;
+}
+
+.floating-badge.badge-bottom-right {
+  bottom: -1.5rem;
+  right: -1.5rem;
+}
+
+.badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--bx-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 85, 255, 0.18);
+  color: var(--bx-primary-soft);
+}
+
+.badge-info h5 {
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+}
+
+.badge-info span {
+  font-size: 0.75rem;
+  color: var(--bx-text-dim);
+  font-family: var(--bx-font-mono);
+}
+
+/* Hero Stats Counter Bar */
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-xl);
+  backdrop-filter: var(--bx-glass-blur);
+  margin-top: 3.5rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat-number {
+  font-family: var(--bx-font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.stat-number .plus {
+  color: var(--bx-primary-soft);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--bx-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   6. Live Tech Ticker (Marquee)
+   -------------------------------------------------------------------------- */
+.tech-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  background: rgba(10, 16, 30, 0.6);
+  border-top: 1px solid var(--bx-border);
+  border-bottom: 1px solid var(--bx-border);
+  position: relative;
+}
+
+.tech-marquee-wrapper::before,
+.tech-marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bx-bg-dark), transparent);
+}
+
+.tech-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bx-bg-dark), transparent);
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.tech-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--bx-font-mono);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--bx-text-muted);
+  white-space: nowrap;
+}
+
+.tech-tag i {
+  color: var(--bx-primary-soft);
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Core Areas of Specialization (FIS + Pioneer IT Reference)
+   -------------------------------------------------------------------------- */
+.specializations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.spec-card {
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  padding: 2.25rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--bx-trans-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: var(--bx-glass-blur);
+}
+
+.spec-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--bx-border-hover);
+  background: var(--bx-bg-card-hover);
+  box-shadow: 0 16px 40px -10px rgba(0, 85, 255, 0.25);
+}
+
+.spec-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.spec-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--bx-radius-md);
+  background: rgba(0, 85, 255, 0.12);
+  border: 1px solid rgba(0, 85, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bx-primary-soft);
+  font-size: 1.5rem;
+  transition: transform var(--bx-trans-fast);
+}
+
+.spec-card:hover .spec-icon-box {
+  transform: scale(1.1);
+  background: var(--bx-primary);
+  color: #ffffff;
+}
+
+.spec-index {
+  font-family: var(--bx-font-mono);
+  font-size: 0.85rem;
+  color: var(--bx-text-dim);
+}
+
+.spec-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.85rem;
+  color: #ffffff;
+}
+
+.spec-desc {
+  font-size: 0.98rem;
+  color: var(--bx-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.spec-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spec-pill {
+  font-family: var(--bx-font-mono);
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--bx-radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--bx-text-muted);
+  border: 1px solid var(--bx-border);
+}
+
+/* --------------------------------------------------------------------------
+   8. Interactive "What We Do" Showcase (Pioneer IT consulting tab structure)
+   -------------------------------------------------------------------------- */
+.whatwedo-container {
+  background: var(--bx-bg-card-solid);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--bx-shadow-card);
+}
+
+/* Top Master Tabs */
+.master-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(7, 10, 18, 0.9);
+  border-bottom: 1px solid var(--bx-border);
+}
+
+.master-tab-btn {
+  padding: 1.5rem 2rem;
+  background: transparent;
+  border: none;
+  color: var(--bx-text-muted);
+  font-family: var(--bx-font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  transition: all var(--bx-trans-fast);
+  position: relative;
+}
+
+.master-tab-btn:not(:last-child) {
+  border-right: 1px solid var(--bx-border);
+}
+
+.master-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.master-tab-btn.active {
+  color: #ffffff;
+  background: var(--bx-bg-card-solid);
+}
+
+.master-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--bx-primary);
+  box-shadow: 0 0 12px var(--bx-primary);
+}
+
+/* Tab Content Layout */
+.tab-pane {
+  display: none;
+  padding: 3rem 2.5rem;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: fadeIn 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sub-tab Technology Split View */
+.tech-showcase-split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.sub-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sub-nav-item {
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--bx-radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--bx-border);
+  color: var(--bx-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all var(--bx-trans-fast);
+}
+
+.sub-nav-item:hover {
+  border-color: var(--bx-primary);
+  color: #ffffff;
+  background: rgba(0, 85, 255, 0.05);
+}
+
+.sub-nav-item.active {
+  border-color: var(--bx-primary);
+  background: rgba(0, 85, 255, 0.12);
+  color: #ffffff;
+}
+
+.sub-nav-item .index {
+  font-family: var(--bx-font-mono);
+  font-size: 0.85rem;
+  color: var(--bx-primary-soft);
+}
+
+.sub-content-panel {
+  background: rgba(7, 10, 18, 0.65);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  padding: 2.5rem;
+  position: relative;
+}
+
+.sub-content-panel h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.sub-content-panel p {
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.feature-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.feature-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.98rem;
+  color: var(--bx-text-main);
+}
+
+.feature-bullets li svg {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--bx-accent-cyan);
+}
+
+/* --------------------------------------------------------------------------
+   9. Dynamic Google Sheets Live CMS Section
+   -------------------------------------------------------------------------- */
+.sheets-dynamic-section {
+  background: linear-gradient(180deg, var(--bx-bg-dark) 0%, #090e1c 100%);
+  border-top: 1px solid var(--bx-border);
+  border-bottom: 1px solid var(--bx-border);
+  position: relative;
+}
+
+.sheets-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding: 1.25rem 1.75rem;
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  backdrop-filter: var(--bx-glass-blur);
+}
+
+.sheets-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.sync-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bx-accent-emerald);
+  box-shadow: 0 0 12px var(--bx-accent-emerald);
+}
+
+.sync-pulse.syncing {
+  background: var(--bx-accent-amber);
+  box-shadow: 0 0 12px var(--bx-accent-amber);
+  animation: bxPulse 0.8s infinite;
+}
+
+.sync-pulse.offline {
+  background: var(--bx-text-dim);
+  box-shadow: none;
+}
+
+.sheets-filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.3rem;
+  border-radius: var(--bx-radius-full);
+  border: 1px solid var(--bx-border);
+}
+
+.filter-btn {
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--bx-radius-full);
+  border: none;
+  background: transparent;
+  color: var(--bx-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--bx-trans-fast);
+}
+
+.filter-btn.active {
+  background: var(--bx-primary);
+  color: #ffffff;
+}
+
+/* Dynamic Cards Grid */
+.dynamic-data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  min-height: 280px;
+}
+
+.dynamic-card {
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--bx-trans-base);
+  position: relative;
+}
+
+.dynamic-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--bx-border-hover);
+  box-shadow: var(--bx-shadow-card);
+}
+
+.dynamic-card .card-category {
+  font-family: var(--bx-font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--bx-accent-cyan);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.dynamic-card .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+.dynamic-card .card-desc {
+  font-size: 0.95rem;
+  color: var(--bx-text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.dynamic-card .card-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid var(--bx-border);
+  font-size: 0.85rem;
+  color: var(--bx-text-dim);
+  font-family: var(--bx-font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   10. Industries We Empower
+   -------------------------------------------------------------------------- */
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.industry-card {
+  background: var(--bx-bg-card);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-lg);
+  padding: 2.25rem 1.75rem;
+  text-align: left;
+  transition: all var(--bx-trans-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.industry-card:hover {
+  border-color: var(--bx-accent-cyan);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgba(0, 240, 255, 0.12);
+}
+
+.industry-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--bx-radius-md);
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--bx-accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.industry-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.industry-desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   11. Strategic Alliances & Partners Bar
+   -------------------------------------------------------------------------- */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.partner-logo-item {
+  padding: 1.25rem;
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(100%) brightness(0.8);
+  opacity: 0.7;
+  transition: all var(--bx-trans-fast);
+  font-family: var(--bx-font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.partner-logo-item:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+  border-color: var(--bx-primary);
+  background: rgba(0, 85, 255, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   12. Direct Inquiry & Contact Form (Linked to Google Sheets)
+   -------------------------------------------------------------------------- */
+.inquiry-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.inquiry-info h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.channel-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--bx-radius-md);
+  background: rgba(0, 85, 255, 0.12);
+  color: var(--bx-primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.channel-text h4 {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.channel-text p {
+  font-size: 0.95rem;
+}
+
+/* Form Container */
+.inquiry-form-card {
+  background: var(--bx-bg-card-solid);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-xl);
+  padding: 3rem;
+  box-shadow: var(--bx-shadow-card);
+  position: relative;
+}
+
+.inquiry-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--bx-primary), var(--bx-accent-cyan));
+  border-radius: var(--bx-radius-xl) var(--bx-radius-xl) 0 0;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.35rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bx-text-main);
+  margin-bottom: 0.45rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  background: rgba(7, 10, 18, 0.8);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-md);
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all var(--bx-trans-fast);
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--bx-primary);
+  box-shadow: 0 0 0 3px var(--bx-primary-glow);
+  background: rgba(9, 14, 26, 0.95);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-status-banner {
+  display: none;
+  padding: 1rem 1.25rem;
+  border-radius: var(--bx-radius-md);
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.form-status-banner.success {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+
+.form-status-banner.error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
+}
+
+/* --------------------------------------------------------------------------
+   13. Modals & Flyouts
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 10, 18, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--bx-trans-base);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: var(--bx-bg-card-solid);
+  border: 1px solid var(--bx-border);
+  border-radius: var(--bx-radius-xl);
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transform: scale(0.95);
+  transition: transform var(--bx-trans-base);
+}
+
+.modal-overlay.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--bx-text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   14. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: #05070d;
+  border-top: 1px solid var(--bx-border);
+  padding: 5rem 0 2.5rem 0;
+  position: relative;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand p {
+  margin-top: 1rem;
+  max-width: 320px;
+  font-size: 0.95rem;
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  color: var(--bx-text-muted);
+  font-size: 0.92rem;
+}
+
+.footer-links a:hover {
+  color: var(--bx-primary-soft);
+  padding-left: 4px;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--bx-border);
+  font-size: 0.88rem;
+  color: var(--bx-text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .hero-card-stack {
+    max-width: 100%;
+  }
+  .specializations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .tech-showcase-split {
+    grid-template-columns: 1fr;
+  }
+  .dynamic-data-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .inquiry-split-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu, .nav-actions .btn {
+    display: none;
+  }
+  .mobile-toggle {
+    display: block;
+  }
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  .specializations-grid {
+    grid-template-columns: 1fr;
+  }
+  .master-tabs {
+    grid-template-columns: 1fr;
+  }
+  .master-tab-btn:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--bx-border);
+  }
+  .dynamic-data-grid {
+    grid-template-columns: 1fr;
+  }
+  .industries-grid {
+    grid-template-columns: 1fr;
+  }
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+  </style>
 
   <!-- Structured Data JSON-LD -->
   <script type="application/ld+json">
@@ -1149,10 +2757,906 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/config.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/sheets.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Embedded High-Performance Application Logic (Self-Contained for GitHub Pages) -->
+  <script>
+/**
+ * BhuvixTechnologies - Global Configuration
+ * 
+ * Google Sheets Integration & Remote API Endpoints
+ * 
+ * IMPORTANT: To keep your personal Google Drive files completely isolated:
+ * 1. Create a dedicated folder in Google Drive named: "BhuvixTechnologies_Data"
+ * 2. Create your website spreadsheet inside THAT folder only (e.g. "BhuvixTechnologies_Database")
+ * 3. Follow the instructions in GOOGLE_SHEETS_SETUP.md
+ */
+
+window.BX_CONFIG = {
+  // Brand Configuration
+  BRAND_NAME: "BhuvixTechnologies",
+  TAGLINE: "Architecting Next-Gen Digital Intelligence & Enterprise Engineering",
+
+  // GOOGLE SHEETS LIVE DATA CONFIGURATION
+  // Set your public Google Sheet ID below when ready:
+  // Example: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
+  GOOGLE_SHEET_ID: "",
+
+  // GOOGLE APPS SCRIPT WEBHOOK URL
+  // Deploy the script in google-apps-script.js as a Web App and paste the Executable URL here:
+  // Example: 'https://script.google.com/macros/s/AKfycbx.../exec'
+  GOOGLE_APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbz30eQZMZ2UUBFBQJlxTBZFFHc6RExFymcRPH9IRtlXKXk4LIX0AWL6QYlv0kEXY7MzVw/exec",
+
+  // Sheet Tabs configuration inside your dedicated BhuvixTechnologies spreadsheet
+  SHEET_TABS: {
+    SERVICES: "Services",
+    PROJECTS: "Projects",
+    JOBS: "Careers",
+    INQUIRIES: "Inquiries"
+  },
+
+  // Fallback mode: automatically uses rich local seed data when Sheet ID is blank or unreachable
+  USE_LOCAL_FALLBACK: true,
+
+  // Polling interval for live sync (in ms, default 5 minutes)
+  AUTO_REFRESH_INTERVAL: 300000,
+
+  // Contact Info
+  CONTACT: {
+    EMAIL: "contact@bhuvixtechnologies.com",
+    PHONE: "+1 (800) 555-0199",
+    LOCATIONS: [
+      {
+        REGION: "United States (HQ)",
+        ADDRESS: "100 Enterprise Boulevard, Suite 400",
+        CITY_STATE_ZIP: "Princeton, NJ 08540, USA"
+      },
+      {
+        REGION: "Global Engineering Hub",
+        ADDRESS: "Tower 4, Cyber City, Tech Park Phase II",
+        CITY_STATE_ZIP: "Bengaluru, Karnataka 560103, India"
+      }
+    ]
+  }
+};
+
+/**
+ * BhuvixTechnologies - Production Fallback Seed Data
+ * Matches the Google Sheet columns 1:1.
+ * If Google Sheets is offline, loading, or not yet configured, the application renders this immediately.
+ */
+
+window.BX_DATA = {
+  // Services & Capabilities
+  services: [
+    {
+      id: "srv-01",
+      category: "Artificial Intelligence",
+      title: "Generative AI & LLM Systems",
+      description: "Custom fine-tuned large language models, retrieval-augmented generation (RAG) pipelines, and autonomous agent workflows embedded into core enterprise applications.",
+      icon: "cpu",
+      tags: ["PyTorch", "LangChain", "OpenAI", "Vector DB"],
+      featured: true
+    },
+    {
+      id: "srv-02",
+      category: "Cloud Engineering",
+      title: "Cloud Migration & Kubernetes DevOps",
+      description: "Full-lifecycle cloud architecture across AWS, Azure, and GCP. High-availability container orchestration, infrastructure as code (Terraform), and zero-downtime CI/CD pipelines.",
+      icon: "cloud",
+      tags: ["Azure", "AWS", "Docker", "Kubernetes", "Terraform"],
+      featured: true
+    },
+    {
+      id: "srv-03",
+      category: "Modernization",
+      title: "Enterprise Application Modernization",
+      description: "Refactoring legacy monolithic enterprise applications into cloud-native microservices with event-driven messaging, modernized databases, and elevated security posture.",
+      icon: "layers",
+      tags: ["Microservices", "Spring Boot", "Kafka", ".NET Core"],
+      featured: true
+    },
+    {
+      id: "srv-04",
+      category: "Web & Mobile Platforms",
+      title: "High-Performance Distributed Systems",
+      description: "Mission-critical, low-latency web platforms and cross-platform mobile apps engineered for millions of concurrent users with sub-second response times.",
+      icon: "smartphone",
+      tags: ["React", "Next.js", "Flutter", "GraphQL", "Node.js"],
+      featured: false
+    },
+    {
+      id: "srv-05",
+      category: "Data & Analytics",
+      title: "Data Warehousing & Real-Time BI",
+      description: "Unified enterprise data meshes, Snowflake/Databricks streaming pipelines, and executive business intelligence dashboards turning siloed data into actionable intelligence.",
+      icon: "database",
+      tags: ["Snowflake", "Databricks", "PowerBI", "dbt"],
+      featured: false
+    },
+    {
+      id: "srv-06",
+      category: "Consulting & Staffing",
+      title: "Specialized Global Tech Talent",
+      description: "Elite engineering augmentation, domain-certified enterprise architects, dedicated scrum pods, and expert technical staffing across AI, Cloud, and Cybersecurity.",
+      icon: "users",
+      tags: ["Pod Augmentation", "Contract-to-Hire", "Executive Search"],
+      featured: false
+    }
+  ],
+
+  // Client Case Studies & Projects
+  projects: [
+    {
+      id: "proj-01",
+      category: "FinTech & Banking",
+      title: "Autonomous Fraud Detection Engine",
+      description: "Engineered a real-time event-streaming fraud analysis platform processing 45,000 transactions per second with 99.97% accuracy and under 12ms latency.",
+      client: "Global Financial Services",
+      impact: "94% reduction in false positives; $18M saved annually",
+      tech: "Apache Flink, Python, AWS, Kafka"
+    },
+    {
+      id: "proj-02",
+      category: "Healthcare & Life Sciences",
+      title: "HIPAA-Compliant Patient Care Mesh",
+      description: "Modernized legacy EHR systems into a microservice-driven, zero-trust cloud infrastructure connecting 120+ regional medical clinics with predictive diagnostics.",
+      client: "Multi-State Healthcare Network",
+      impact: "Zero downtime during 2-year transition; 3.8x faster record retrieval",
+      tech: "Azure Health Data Services, FHIR, Kubernetes, React"
+    },
+    {
+      id: "proj-03",
+      category: "Supply Chain & Retail",
+      title: "Predictive Inventory Optimization Platform",
+      description: "Built an omnichannel fulfillment forecasting model integrating IoT warehouse sensors, supplier lead times, and retail demand forecasting.",
+      client: "Tier-1 Retail Enterprise",
+      impact: "22% decrease in carrying costs; 99.8% stock availability",
+      tech: "Google Cloud Platform, BigQuery, TensorFlow, Next.js"
+    }
+  ],
+
+  // Career Opportunities (Talent Hub)
+  careers: [
+    {
+      id: "job-01",
+      category: "Engineering",
+      title: "Senior Cloud & DevOps Architect",
+      department: "Cloud Practice",
+      location: "Princeton, NJ / Remote",
+      type: "Full-Time",
+      experience: "7+ Years",
+      description: "Lead enterprise cloud modernization projects, architect containerized clusters, and establish automated deployment standards."
+    },
+    {
+      id: "job-02",
+      category: "AI & ML",
+      title: "Lead Generative AI Engineer",
+      department: "AI Innovation Lab",
+      location: "Bengaluru, IN / Remote",
+      type: "Full-Time",
+      experience: "5+ Years",
+      description: "Design and implement custom LLM evaluation frameworks, agentic workflows, and high-throughput vector retrieval architectures."
+    },
+    {
+      id: "job-03",
+      category: "Full Stack",
+      title: "Principal Full Stack Engineer",
+      department: "Software Services",
+      location: "Hybrid / Remote",
+      type: "Full-Time",
+      experience: "6+ Years",
+      description: "Build robust, scalable distributed enterprise applications utilizing modern frontend frameworks and distributed backend services."
+    }
+  ],
+
+  // Client Testimonials
+  testimonials: [
+    {
+      quote: "BhuvixTechnologies transformed our legacy banking architecture into a state-of-the-art event-driven system. Their technical depth in cloud infrastructure and AI automation is unmatched.",
+      author: "Marcus Vance",
+      title: "Chief Technology Officer",
+      company: "Apex Global FinTech"
+    },
+    {
+      quote: "The speed of execution and rigorous engineering standards Bhuvix brought to our digital transformation program allowed us to go to market six months ahead of schedule.",
+      author: "Elena Rostova",
+      title: "VP of Digital Innovation",
+      company: "BioCare Diagnostics"
+    },
+    {
+      quote: "From talent augmentation to full-stack project delivery, BhuvixTechnologies acts as a true strategic partner rather than an ordinary vendor.",
+      author: "David Chen",
+      title: "Director of Enterprise Systems",
+      company: "OmniLogix Distribution"
+    }
+  ],
+
+  // Key Enterprise Metrics
+  stats: [
+    { value: "99.8%", label: "On-Time Delivery Rate" },
+    { value: "50+", label: "Enterprise Transformations" },
+    { value: "24/7", label: "Mission-Critical Support" },
+    { value: "15+", label: "Industry Domain Specializations" }
+  ]
+};
+
+/**
+ * BhuvixTechnologies - Google Sheets Data Reader & Submission Handler
+ * 
+ * Functions:
+ * 1. fetchSheetData(tabName): Reads dynamic data from Google Sheets via Google Visualization API
+ * 2. submitInquiry(data): Posts form submissions to Google Apps Script Web App
+ * 3. Handles automatic fallbacks, loading states, and live UI updates
+ */
+
+const BX_Sheets = (function () {
+  let isConnectedToSheet = false;
+  let currentActiveData = {
+    services: [],
+    projects: [],
+    careers: []
+  };
+
+  /**
+   * Helper to clean Google Visualization API JSON response
+   */
+  function parseGVizResponse(rawText) {
+    try {
+      const match = rawText.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\);/);
+      if (match && match[1]) {
+        const json = JSON.parse(match[1]);
+        if (json.status === 'error') {
+          console.warn('[BhuvixSheets] GViz error:', json.errors);
+          return null;
+        }
+
+        const cols = json.table.cols.map(c => (c.label || c.id || '').trim());
+        const rows = json.table.rows.map(r => {
+          const rowObj = {};
+          r.c.forEach((cell, idx) => {
+            const key = cols[idx] || `col_${idx}`;
+            rowObj[key] = cell ? (cell.v !== null ? cell.v : '') : '';
+          });
+          return rowObj;
+        });
+        return rows;
+      }
+    } catch (err) {
+      console.warn('[BhuvixSheets] Failed to parse GViz output:', err);
+    }
+    return null;
+  }
+
+  /**
+   * Fetch specific tab from Google Sheets
+   */
+  async function fetchTab(tabName) {
+    const sheetId = window.BX_CONFIG.GOOGLE_SHEET_ID;
+    if (!sheetId || sheetId.trim() === '') {
+      return null;
+    }
+
+    const url = `https://docs.google.com/spreadsheets/d/${encodeURIComponent(sheetId)}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tabName)}`;
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000); // 6s timeout
+      const response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const text = await response.text();
+      return parseGVizResponse(text);
+    } catch (error) {
+      console.warn(`[BhuvixSheets] Unable to fetch tab "${tabName}":`, error.message);
+      return null;
+    }
+  }
+
+  /**
+   * Initialize and synchronize all dynamic data
+   */
+  async function init() {
+    updateSyncStatus('syncing', 'Syncing Data...');
+
+    const tabs = window.BX_CONFIG.SHEET_TABS;
+    const sheetId = window.BX_CONFIG.GOOGLE_SHEET_ID;
+
+    if (!sheetId || sheetId.trim() === '') {
+      // Use local fallback
+      useFallbackData('Local Cache Active (No Sheet ID configured)');
+      return;
+    }
+
+    try {
+      const [remoteServices, remoteProjects, remoteCareers] = await Promise.all([
+        fetchTab(tabs.SERVICES),
+        fetchTab(tabs.PROJECTS),
+        fetchTab(tabs.JOBS)
+      ]);
+
+      let anySuccess = false;
+
+      if (remoteServices && remoteServices.length > 0) {
+        currentActiveData.services = remoteServices.map((row, idx) => ({
+          id: row.id || `srv-${idx+1}`,
+          category: row.category || 'Technology',
+          title: row.title || 'Enterprise Service',
+          description: row.description || '',
+          icon: row.icon || 'cpu',
+          tags: row.tags ? String(row.tags).split(',').map(t => t.trim()) : [],
+          featured: row.featured === true || String(row.featured).toLowerCase() === 'true'
+        }));
+        anySuccess = true;
+      } else {
+        currentActiveData.services = window.BX_DATA.services;
+      }
+
+      if (remoteProjects && remoteProjects.length > 0) {
+        currentActiveData.projects = remoteProjects.map((row, idx) => ({
+          id: row.id || `proj-${idx+1}`,
+          category: row.category || 'Enterprise Case Study',
+          title: row.title || 'Client Success Story',
+          description: row.description || '',
+          client: row.client || 'Enterprise Partner',
+          impact: row.impact || 'High-Impact Transformation',
+          tech: row.tech || ''
+        }));
+        anySuccess = true;
+      } else {
+        currentActiveData.projects = window.BX_DATA.projects;
+      }
+
+      if (remoteCareers && remoteCareers.length > 0) {
+        currentActiveData.careers = remoteCareers.map((row, idx) => ({
+          id: row.id || `job-${idx+1}`,
+          category: row.category || 'Engineering',
+          title: row.title || 'Open Role',
+          department: row.department || 'Technology',
+          location: row.location || 'Remote / Hybrid',
+          type: row.type || 'Full-Time',
+          experience: row.experience || 'Experienced',
+          description: row.description || ''
+        }));
+        anySuccess = true;
+      } else {
+        currentActiveData.careers = window.BX_DATA.careers;
+      }
+
+      if (anySuccess) {
+        isConnectedToSheet = true;
+        updateSyncStatus('connected', 'Live Google Sheet Connected');
+      } else {
+        useFallbackData('Remote sheet empty; local seed active');
+      }
+    } catch (err) {
+      console.warn('[BhuvixSheets] Sync error, using fallback:', err);
+      useFallbackData('Sync failed; local seed active');
+    }
+
+    // Trigger UI render
+    if (window.BX_UI && typeof window.BX_UI.renderDynamicContent === 'function') {
+      window.BX_UI.renderDynamicContent(currentActiveData);
+    }
+  }
+
+  function useFallbackData(statusMsg) {
+    isConnectedToSheet = false;
+    currentActiveData.services = [...window.BX_DATA.services];
+    currentActiveData.projects = [...window.BX_DATA.projects];
+    currentActiveData.careers = [...window.BX_DATA.careers];
+    updateSyncStatus('local', statusMsg || 'Local Data Active');
+
+    if (window.BX_UI && typeof window.BX_UI.renderDynamicContent === 'function') {
+      window.BX_UI.renderDynamicContent(currentActiveData);
+    }
+  }
+
+  /**
+   * Update visual status indicator in toolbar
+   */
+  function updateSyncStatus(status, text) {
+    const pulseEl = document.getElementById('sheetSyncPulse');
+    const textEl = document.getElementById('sheetSyncText');
+    const navChip = document.getElementById('navSyncChip');
+
+    if (pulseEl) {
+      pulseEl.className = 'sync-pulse';
+      if (status === 'syncing') pulseEl.classList.add('syncing');
+      if (status === 'local') pulseEl.classList.add('offline');
+    }
+
+    if (textEl) {
+      textEl.textContent = text;
+    }
+
+    if (navChip) {
+      if (status === 'connected') {
+        navChip.innerHTML = '<span class="dot"></span> LIVE DATA: CONNECTED';
+        navChip.className = 'bx-chip emerald';
+      } else if (status === 'syncing') {
+        navChip.innerHTML = '<span class="dot"></span> SYNCING...';
+        navChip.className = 'bx-chip';
+      } else {
+        navChip.innerHTML = '<span class="dot"></span> LOCAL SEED ACTIVE';
+        navChip.className = 'bx-chip cyan';
+      }
+    }
+  }
+
+  /**
+   * Submit Project Inquiry to Google Apps Script Web App
+   */
+  async function submitInquiry(formData) {
+    const scriptUrl = window.BX_CONFIG.GOOGLE_APPS_SCRIPT_URL;
+
+    // Create payload
+    const payload = {
+      timestamp: new Date().toISOString(),
+      fullName: formData.fullName || '',
+      email: formData.email || '',
+      phone: formData.phone || '',
+      company: formData.company || '',
+      service: formData.service || '',
+      budget: formData.budget || '',
+      timeline: formData.timeline || '',
+      message: formData.message || '',
+      source: 'BhuvixTechnologies Website'
+    };
+
+    console.log('[BhuvixSheets] Submitting inquiry payload:', payload);
+
+    // If script URL is not configured, simulate success and save in localStorage
+    if (!scriptUrl || scriptUrl.trim() === '') {
+      await new Promise(resolve => setTimeout(resolve, 800)); // realistic UX delay
+      
+      const savedList = JSON.parse(localStorage.getItem('bhuvix_demo_inquiries') || '[]');
+      savedList.push(payload);
+      localStorage.setItem('bhuvix_demo_inquiries', JSON.stringify(savedList));
+
+      return {
+        success: true,
+        mode: 'demo',
+        message: 'Inquiry received successfully! (Simulated mode: To log directly into your Google Sheet, configure your Google Apps Script URL in js/config.js)'
+      };
+    }
+
+    try {
+      // POST to Google Apps Script
+      // Apps Script redirects, so we use fetch with no-cors or form-urlencoded
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        mode: 'no-cors', // standard method for Google Apps Script Web App without CORS errors
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      return {
+        success: true,
+        mode: 'live',
+        message: 'Thank you! Your project inquiry has been securely submitted to BhuvixTechnologies and logged in our Google Sheet. An executive will reach out shortly.'
+      };
+    } catch (error) {
+      console.error('[BhuvixSheets] Submit error:', error);
+      return {
+        success: false,
+        error: error.message,
+        message: 'Submission encountered a network issue. Please try again or reach us directly at contact@bhuvixtechnologies.com.'
+      };
+    }
+  }
+
+  return {
+    init,
+    fetchTab,
+    submitInquiry,
+    getData: () => currentActiveData,
+    isConnected: () => isConnectedToSheet
+  };
+})();
+
+// Auto-run when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  BX_Sheets.init();
+});
+
+/**
+ * BhuvixTechnologies - Interactive UI Controller
+ * 
+ * Features:
+ * - Header Scroll Effects & Smooth Navigation
+ * - "What We Do" Master & Sub Tabs (Pioneer IT Style)
+ * - Dynamic Cards Grid (Filter by Services, Projects, Careers)
+ * - Google Sheets Setup & Contact Modals
+ * - Contact Form Validation & Submission Feedback
+ */
+
+window.BX_UI = (function () {
+  let activeFilter = 'all';
+  let dynamicStore = {
+    services: [],
+    projects: [],
+    careers: []
+  };
+
+  function init() {
+    setupHeaderScroll();
+    setupMobileNav();
+    setupMasterTabs();
+    setupSubTechTabs();
+    setupFilterTabs();
+    setupModals();
+    setupForms();
+    setupRefreshButton();
+    setupSmoothScroll();
+  }
+
+  // 1. Header scroll effect
+  function setupHeaderScroll() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  }
+
+  // 2. Mobile Nav Drawer
+  function setupMobileNav() {
+    const toggleBtn = document.getElementById('mobileToggle');
+    const drawer = document.getElementById('mobileDrawer');
+    const overlay = document.getElementById('mobileOverlay');
+    const closeBtn = document.getElementById('drawerClose');
+
+    if (!toggleBtn || !drawer || !overlay) return;
+
+    const openDrawer = () => {
+      drawer.classList.add('open');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeDrawer = () => {
+      drawer.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    toggleBtn.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    // Close on link click
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
+  }
+
+  // 3. "What We Do" Master Tabs
+  function setupMasterTabs() {
+    const tabButtons = document.querySelectorAll('.master-tab-btn');
+    const tabPanes = document.querySelectorAll('.whatwedo-pane');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(p => p.classList.remove('active'));
+
+        btn.classList.add('active');
+        const activePane = document.getElementById(targetTab);
+        if (activePane) activePane.classList.add('active');
+      });
+    });
+  }
+
+  // 4. Technology Sub-tabs Split View
+  function setupSubTechTabs() {
+    const subNavItems = document.querySelectorAll('.sub-nav-item');
+    const subPanels = document.querySelectorAll('.tech-sub-panel');
+
+    subNavItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const targetPanel = item.getAttribute('data-sub');
+
+        subNavItems.forEach(n => n.classList.remove('active'));
+        subPanels.forEach(p => p.classList.remove('active'));
+
+        item.classList.add('active');
+        const activeSub = document.getElementById(targetPanel);
+        if (activeSub) activeSub.classList.add('active');
+      });
+    });
+  }
+
+  // 5. Dynamic Data Filter Tabs
+  function setupFilterTabs() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter') || 'all';
+        renderCardsGrid();
+      });
+    });
+  }
+
+  // 6. Receive data from sheets.js and trigger render
+  function renderDynamicContent(data) {
+    dynamicStore = data;
+    renderCardsGrid();
+  }
+
+  // 7. Render dynamic cards based on active filter
+  function renderCardsGrid() {
+    const container = document.getElementById('dynamicDataGrid');
+    if (!container) return;
+
+    let itemsToDisplay = [];
+
+    if (activeFilter === 'all' || activeFilter === 'services') {
+      (dynamicStore.services || []).forEach(s => {
+        itemsToDisplay.push({
+          type: 'Service',
+          badge: s.category || 'Service',
+          title: s.title,
+          desc: s.description,
+          meta1: (s.tags && s.tags.length > 0) ? s.tags.slice(0, 3).join(' • ') : 'Enterprise Ready',
+          meta2: 'Explore Service →',
+          actionUrl: '#contact'
+        });
+      });
+    }
+
+    if (activeFilter === 'all' || activeFilter === 'projects') {
+      (dynamicStore.projects || []).forEach(p => {
+        itemsToDisplay.push({
+          type: 'Project',
+          badge: `Case Study: ${p.category || 'Enterprise'}`,
+          title: p.title,
+          desc: p.description,
+          meta1: p.client || 'Strategic Client',
+          meta2: p.impact ? `Impact: ${p.impact.slice(0, 32)}...` : 'Delivered',
+          actionUrl: '#contact'
+        });
+      });
+    }
+
+    if (activeFilter === 'all' || activeFilter === 'careers') {
+      (dynamicStore.careers || []).forEach(c => {
+        itemsToDisplay.push({
+          type: 'Career',
+          badge: `Career • ${c.department || 'Tech'}`,
+          title: c.title,
+          desc: c.description,
+          meta1: `${c.location || 'Remote'} • ${c.type || 'Full-Time'}`,
+          meta2: 'Apply Now →',
+          actionUrl: '#contact'
+        });
+      });
+    }
+
+    if (itemsToDisplay.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: var(--bx-bg-card); border-radius: var(--bx-radius-lg); border: 1px solid var(--bx-border);">
+          <p style="color: var(--bx-text-muted); font-size: 1.1rem;">No items currently found in this category.</p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = itemsToDisplay.map(item => `
+      <div class="dynamic-card">
+        <div>
+          <div class="card-category">${escapeHtml(item.badge)}</div>
+          <h3 class="card-title">${escapeHtml(item.title)}</h3>
+          <p class="card-desc">${escapeHtml(item.desc)}</p>
+        </div>
+        <div class="card-footer-meta">
+          <span>${escapeHtml(item.meta1)}</span>
+          <a href="${item.actionUrl}" style="color: var(--bx-primary-soft); font-weight: 600;">${escapeHtml(item.meta2)}</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 8. Modals
+  function setupModals() {
+    // Setup Guide Modal
+    const setupModal = document.getElementById('sheetGuideModal');
+    const openSetupBtns = document.querySelectorAll('.open-sheet-guide-btn');
+    const closeSetupBtn = document.getElementById('closeSheetGuide');
+
+    if (setupModal) {
+      openSetupBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          setupModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (closeSetupBtn) {
+        closeSetupBtn.addEventListener('click', () => {
+          setupModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      setupModal.addEventListener('click', (e) => {
+        if (e.target === setupModal) {
+          setupModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Contact Consultation Modal
+    const contactModal = document.getElementById('contactModal');
+    const openContactBtns = document.querySelectorAll('.open-contact-modal-btn');
+    const closeContactBtn = document.getElementById('closeContactModal');
+
+    if (contactModal) {
+      openContactBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          contactModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      if (closeContactBtn) {
+        closeContactBtn.addEventListener('click', () => {
+          contactModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      contactModal.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
+          contactModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  }
+
+  // 9. Forms submission
+  function setupForms() {
+    const mainForm = document.getElementById('mainInquiryForm');
+    const modalForm = document.getElementById('modalInquiryForm');
+
+    const handleFormSubmit = async (form, statusBannerId) => {
+      const banner = document.getElementById(statusBannerId);
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const origBtnText = submitBtn ? submitBtn.innerHTML : 'Submit';
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="dot"></span> Sending to Google Sheet...';
+      }
+
+      const formData = {
+        fullName: form.fullName ? form.fullName.value : '',
+        email: form.email ? form.email.value : '',
+        phone: form.phone ? form.phone.value : '',
+        company: form.company ? form.company.value : '',
+        service: form.service ? form.service.value : '',
+        budget: form.budget ? form.budget.value : '',
+        timeline: form.timeline ? form.timeline.value : '',
+        message: form.message ? form.message.value : ''
+      };
+
+      const result = await BX_Sheets.submitInquiry(formData);
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = origBtnText;
+      }
+
+      if (banner) {
+        banner.className = 'form-status-banner';
+        if (result.success) {
+          banner.classList.add('success');
+          banner.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <div>${escapeHtml(result.message)}</div>
+          `;
+          form.reset();
+        } else {
+          banner.classList.add('error');
+          banner.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div>${escapeHtml(result.message)}</div>
+          `;
+        }
+      }
+    };
+
+    if (mainForm) {
+      mainForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleFormSubmit(mainForm, 'mainFormStatusBanner');
+      });
+    }
+
+    if (modalForm) {
+      modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleFormSubmit(modalForm, 'modalFormStatusBanner');
+      });
+    }
+  }
+
+  // 10. Refresh Button
+  function setupRefreshButton() {
+    const refreshBtn = document.getElementById('refreshSheetDataBtn');
+    if (!refreshBtn) return;
+
+    refreshBtn.addEventListener('click', () => {
+      refreshBtn.disabled = true;
+      refreshBtn.style.opacity = '0.6';
+      BX_Sheets.init().finally(() => {
+        setTimeout(() => {
+          refreshBtn.disabled = false;
+          refreshBtn.style.opacity = '1';
+        }, 1000);
+      });
+    });
+  }
+
+  // 11. Smooth Scrolling
+  function setupSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#' || href === '') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  return {
+    init,
+    renderDynamicContent
+  };
+})();
+
+document.addEventListener('DOMContentLoaded', () => {
+  window.BX_UI.init();
+});
+
+  </script>
 </body>
 </html>
